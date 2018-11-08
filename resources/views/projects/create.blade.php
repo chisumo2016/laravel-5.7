@@ -1,32 +1,44 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layout.master')
 
- <h1> Create a Projects </h1>
+@section('content')
 
- <form method="POST" action="/projects">
+    <h1 class="title"> Create a New Projects </h1>
 
-     {{ csrf_field() }}
-     <div>
-         <input type="text" name="title" placeholder="Project Title">
-     </div>
+    <form method="POST" action="/projects">
+        {{ csrf_field() }}
 
-     <div>
-         <textarea name="description" id="" cols="30" rows="10" placeholder="Project description"></textarea>
-     </div>
+        <div class="field">
+            <label class="label" for="title">Title</label>
+        </div>
 
-     <div>
-         <button type="submit">Create Project</button>
-     </div>
- </form>
+        <div class="control">
+            <input type="text" class="input {{ $errors->has('title') ? 'is-danger' : '' }}" name="title" placeholder="Title" value="{{ old('title') }}" >
+        </div>
+
+        <div class="field">
+            <label class="label" for="description">Description</label>
+            <div class="control">
+                <textarea name="description" class="textarea {{ $errors->has('title') ? 'is-danger' : '' }}" >{{ old('description') }}</textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-link">Create Project</button>
+            </div>
+        </div>
 
 
-</body>
-</html>
+        @if($errors->any())
+            <div class="notification is-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+
+        @endif
+
+    </form>
+@endsection
