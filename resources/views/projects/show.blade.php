@@ -20,7 +20,7 @@
                        {{--PATCH /projects/id/tasks/id--}}
                       {{--PATCH /tasks/id recommended--}}
 
-                    <form action="/tasks/{{ $task->id }}" method="POST">
+                    <form action="/tasks/{{ $task->id }}" meth od="POST">
 
                         @csrf
                         @method('PATCH')
