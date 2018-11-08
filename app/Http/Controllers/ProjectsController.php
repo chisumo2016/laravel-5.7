@@ -24,7 +24,7 @@ class ProjectsController extends Controller
 
     public  function  show(Project $project)  // model binding
     {
-            return $project;
+            //return $project;
 
        //$project = Project::findOrFail($id);
        //return $project;
