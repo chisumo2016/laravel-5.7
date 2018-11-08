@@ -12,6 +12,9 @@
 */
 
 
+Route::resource('/projects', 'ProjectsController');
+Route::patch('/tasks/{task}', 'ProjectTasksController@update');
+
 /*
  *
  * GET    / projects(index)
@@ -36,7 +39,9 @@
 //
 
 
-Route::resource('/projects', 'ProjectsController');
+
+
+
 
 
 

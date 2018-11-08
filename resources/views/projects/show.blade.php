@@ -16,7 +16,25 @@
     @if($project->tasks->count())
         <div>
             @foreach($project->tasks as $task)
-                <li>{{ $task->body }}</li>
+                <div>
+                       {{--PATCH /projects/id/tasks/id--}}
+                      {{--PATCH /tasks/id recommended--}}
+
+                    <form action="/tasks/{{ $task->id }}" method="POST">
+
+                        @csrf
+                        @method('PATCH')
+
+                        <label class="checkbox {{ $task->completed ? 'is-complete'  : ''}}" for="completed">
+
+                            <input type="checkbox" name="completed" onchange="this.form.submit()"
+
+                            {{ $task->completed ? 'checked'  : ''}}>
+
+                            {{ $task->body }}
+                        </label>
+                    </form>
+                </div>
             @endforeach
         </div>
     @endif
