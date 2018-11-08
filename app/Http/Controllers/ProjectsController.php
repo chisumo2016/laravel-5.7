@@ -22,56 +22,85 @@ class ProjectsController extends Controller
         return view('projects.create');
     }
 
-    public  function  show()
+    public  function  show(Project $project)  // model binding
     {
+            return $project;
 
+       //$project = Project::findOrFail($id);
+       //return $project;
+
+       return view('projects.show', compact('project'));
     }
 
-    public  function  edit($id) // example.com/projects/1/edit
+    public  function  edit(Project $project) // example.com/projects/1/edit
     {
 
-         $project = Project::findOrFail($id);
+         //$project = Project::findOrFail($id);
 
         return view('projects.edit', compact('project'));
     }
 
     public  function  store()
     {
+        Project::create(request([
+            'title',
+            'description'
 
-        $project = new Project();
+        ]));
+
+
+        /*dd(request(['title', 'description']));
+        dd(request()->all());
+
+        Project::create([
+            'title' => request('title'),
+            'description' => request('description'),
+        ]);
+        */
+
+
+
+        /*$project = new Project();
 
         $project->title         = request('title');
         $project->description   = request('description');
 
-        $project->save();
+        $project->save();*/
 
 
         return  redirect('/projects');
     }
 
 
-    public  function  update($id)
+    public  function  update( Project $project)
     {
-        $project = Project::findOrFail($id);
+          // Recommendes
+         $project->update(request(['title', 'description']));
 
-        $project->title         = request('title');
+
+        //$project = Project::findOrFail($id);
+
+        /*$project->title         = request('title');
         $project->description   = request('description');
 
-        $project->save();
+        $project->save();*/
 
         return redirect('/projects');
     }
 
 
-    public function  destroy($id)
+    public function  destroy(Project $project)
     {
-        //Project::find($id)->delete();
-
-        $project = Project::findOrFail($id);
-
+        $project->delete();
         $project->save();
 
         return redirect('/projects');
+
+        
+        //Project::find($id)->delete();//$project = Project::findOrFail($id);
+
+
+
     }
 
 }
