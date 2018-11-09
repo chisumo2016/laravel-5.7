@@ -22,9 +22,14 @@
                 <div>
 
                     {{--PATCH /tasks/id recommended--}}
-                    <form action="/tasks/{{ $task->id }}" method="POST">
+                    <form action="/completed-tasks/{{ $task->id }}" method="POST">
+
+                        @if($task->completed)
+                            @method('DELETE')
+
+                        @endif
                         @csrf
-                        @method('PATCH')
+                        {{--@method('PATCH')--}}
 
                         <label class="checkbox {{ $task->completed ? 'is-complete'  : ''}}" for="completed">
 
