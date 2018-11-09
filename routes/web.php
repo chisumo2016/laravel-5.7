@@ -1,14 +1,11 @@
 <?php
 
-app()->singleton('Example', function (){
-    dd('sdd');
-    return new \App\Example;
-});
 
+use App\Repositories\UserRepository;
 
-Route::get('/', function (){
+Route::get('/', function (UserRepository $users){
 
-    dd(app('App\example'));
+   dd($users);
 
     return view('welcome');
 });
@@ -58,3 +55,23 @@ Route::get('/', function (){
 
 
 
+/*
+ Route::get('/', function (Twitter $twitter){
+
+    dd($twitter);
+
+    return view('welcome');
+});
+
+ * app()->singleton('Example', function (){
+    dd('sdd');
+    return new \App\Example;
+});
+
+
+Route::get('/', function (){
+
+    dd(app('App\example'));
+
+    return view('welcome');
+});*/
