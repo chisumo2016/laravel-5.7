@@ -37,6 +37,7 @@
 
 
 Route::resource('/projects', 'ProjectsController');
+Route::patch('/tasks/{task}', 'ProjectTasksController@update');
 
 
 
