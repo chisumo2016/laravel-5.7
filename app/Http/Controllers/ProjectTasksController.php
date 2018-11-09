@@ -21,11 +21,10 @@ class ProjectTasksController extends Controller
 
     public  function  update(Task $task)
     {
-        $task->update([
+        $method = request()->has('completed') ? 'complete' : 'incomplete';
 
-            'completed' => request()->has('completed')
-        ]);
-
+        $task->$method();
+        
         return back();
     }
 }
@@ -41,3 +40,21 @@ class ProjectTasksController extends Controller
 
    $project->addTask(request('body'));
  */
+
+/*
+ *
+ *   /*$task->update([
+
+            'completed' => request()->has('completed')
+        ]);*/
+
+
+/*if (request()->has('complete')){
+
+            $task->complete();
+        }else{
+            $task->incomplete();
+        }*/
+
+//request()->has('complete') ? $task->complete() : $task->incomplete();
+//1$task->complete(request()->has('completed'));   // Encapsulation : Hide internal state and values inside the class
