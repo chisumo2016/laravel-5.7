@@ -1,15 +1,17 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+app()->singleton('Example', function (){
+    dd('sdd');
+    return new \App\Example;
+});
+
+
+Route::get('/', function (){
+
+    dd(app('App\example'));
+
+    return view('welcome');
+});
 
 
 
@@ -33,6 +35,12 @@ Route::delete('/completed-tasks/{task}', 'CompletedTasksController@destroy');
  * PATCH /projects / 1 (update)
  * DELETE /projects /1 (destroy
  *
+ *
+ * use Illuminate\Filesystem\Filesystem;
+
+Route::get('/', function (){
+    dd(app(Filesystem::class));
+});
  */
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
@@ -20,15 +21,10 @@ class ProjectsController extends Controller
     public  function  create()
     {
         return view('projects.create');
-    }
+    } 
 
-    public  function  show(Project $project)  // model binding
+    public  function  show(Project $project)  // model binding  Project $project
     {
-            //return $project;
-
-       //$project = Project::findOrFail($id);
-       //return $project;
-
        return view('projects.show', compact('project'));
     }
 
@@ -135,3 +131,12 @@ class ProjectsController extends Controller
     }
 
 }
+
+
+/*
+//     show
+return $project;
+
+        //$project = Project::findOrFail($id);
+        //return $project;
+ */
