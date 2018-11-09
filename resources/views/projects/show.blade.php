@@ -39,6 +39,33 @@
             @endforeach
         </div>
     @endif
+
+
+    {{--Add New Task--}}
+
+    <form method="POST"     action="/projects/{{ $project->id }}/tasks" class="box">
+
+        @csrf
+        <div class="field">
+            <label for="" class="label"> Add New Task</label>
+
+
+        <div class="control">
+            <input type="text" class="input" name="body" placeholder="New Task" required>
+        </div>
+
+        </div>
+
+
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-link">Add Task</button>
+            </div>
+        </div>
+
+
+        @include('errors')
+    </form>
     
 
 @endsection

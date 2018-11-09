@@ -12,7 +12,7 @@
         </div>
 
         <div class="control">
-            <input type="text" class="input {{ $errors->has('title') ? 'is-danger' : '' }}" name="title" placeholder="Title" value="{{ old('title') }}" >
+            <input type="text" class="input {{ $errors->has('title') ? 'is-danger' : '' }}" name="title" placeholder="Title" value="{{ old('title') }}" required>
         </div>
 
         <div class="field">
@@ -28,17 +28,6 @@
             </div>
         </div>
 
-
-        @if($errors->any())
-            <div class="notification is-danger">
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-
-        @endif
-
+        @include('errors')
     </form>
 @endsection
