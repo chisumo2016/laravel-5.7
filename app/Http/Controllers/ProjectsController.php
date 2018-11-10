@@ -31,7 +31,10 @@ class ProjectsController extends Controller
 
     public  function  show(Project $project)  // model binding  Project $project
     {
-       return view('projects.show', compact('project'));
+
+        $this->authorize('view', $project);
+
+        return view('projects.show', compact('project'));
     }
 
     public  function  edit(Project $project) // example.com/projects/1/edit
@@ -44,6 +47,7 @@ class ProjectsController extends Controller
 
     public  function  store()
     {
+        //$this->authorize('update', $project);
 
         $attributes = request()->validate([
             'title'=> ['required', 'min:3' ],
@@ -52,7 +56,7 @@ class ProjectsController extends Controller
 
         $attributes['owner_id'] = auth()->id();
         Project::create($attributes); // append to array
-        
+
         //Project::create($attributes + ['owner_id' => auth()->id()]); // append to array
 
 
@@ -109,6 +113,7 @@ class ProjectsController extends Controller
 
     public  function  update( Project $project)
     {
+        $this->authorize('update', $project);
           // Recommendes
          $project->update(request(['title', 'description']));
 
@@ -126,6 +131,8 @@ class ProjectsController extends Controller
 
     public function  destroy(Project $project)
     {
+        $this->authorize('update', $project);
+
         $project->delete();
         $project->save();
 
