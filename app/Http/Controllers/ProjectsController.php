@@ -8,11 +8,17 @@ use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
+
+    public  function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public  function  index()
 
     {
-        $projects =  Project::all();
 
+        $projects =  Project::where('owner_id', auth()->id())->get();
 
         return view('projects.index', compact('projects'));
     }
@@ -44,8 +50,10 @@ class ProjectsController extends Controller
             'description'=> ['required', 'min:3' ],
         ]);
 
-
-        Project::create($attributes);
+        $attributes['owner_id'] = auth()->id();
+        Project::create($attributes); // append to array
+        
+        //Project::create($attributes + ['owner_id' => auth()->id()]); // append to array
 
 
         return  redirect('/projects');
@@ -135,8 +143,18 @@ class ProjectsController extends Controller
 
 /*
 //     show
-return $project;
+        return $project;
 
         //$project = Project::findOrFail($id);
         //return $project;
+
+    //$projects =  Project::all();th
+        //auth()->id()  //4
+        //auth()->user() //user
+        //auth()->check()  //Boolean
+        //auth()->guest()
+
+$this->middleware('auth')->only('store', 'update');
+$this->middleware('auth')->except('show');
+
  */

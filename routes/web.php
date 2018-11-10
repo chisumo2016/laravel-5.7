@@ -1,12 +1,16 @@
 <?php
 
-use App\Services\Twitter;
 
-Route::get('/', function (Twitter $twitter){
-    dd($twitter);
+
+Route::get('/', function (){
+
     return view('welcome');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::resource('/projects', 'ProjectsController');
@@ -54,6 +58,15 @@ Route::get('/', function (){
 /*
  *
  *
+ *
+ *
+use App\Services\Twitter;
+
+Route::get('/', function (Twitter $twitter){
+    dd($twitter);
+    return view('welcome');
+});
+
 use App\Repositories\UserRepository;
 
 Route::get('/', function (UserRepository $users){
