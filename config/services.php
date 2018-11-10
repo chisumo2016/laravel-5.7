@@ -29,10 +29,18 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
+    //config('services.stripe.token')
     'stripe' => [
         'model' => App\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+
+    'twitter' =>[
+       'key'    => env('TWITTER_KEY'),
+       'secret' => env('TWITTER_SECRET')
+    ],
+
+
 
 ];

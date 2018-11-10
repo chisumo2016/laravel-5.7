@@ -25,7 +25,8 @@ class SocialServiceProviders extends ServiceProvider
     public function register()
     {
         $this->app->singleton(Twitter::class, function (){
-            return new Twitter('app-key');
+            return new Twitter(config('services.twitter.secret'));
+            //return new Twitter('app-key');
         });
     }
 }
